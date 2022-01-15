@@ -31,3 +31,7 @@ func (s *SimpleCache) ReadFeed(ctx context.Context, id string) ([]model.Post, er
 	posts := s.data[id]
 	return posts, nil
 }
+
+func NewSimpleCache() *SimpleCache {
+	return &SimpleCache{data: make(map[string][]model.Post)}
+}

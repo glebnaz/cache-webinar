@@ -1,13 +1,12 @@
 version: '2'
 
-networks:
-  app-tier:
-    driver: bridge
-
 services:
   redis:
-    image: 'bitnami/redis:latest'
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    networks:
-      - app-tier
+    container_name: redis
+    image: redis:4.0-alpine
+    command:
+      - 'redis-server'
+      - '--loglevel ${REDIS_LOGLEVEL:-warning}'
+      - '--databases 2'
+    ports:
+      - "6379:6379"
