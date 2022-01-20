@@ -11,4 +11,9 @@ var Router = []router.Router{
 		Method:  http.MethodPost,
 		Handler: server.NewCreatePost(),
 	},
+	{
+		Path:    "/v1/get-feed",
+		Method:  http.MethodPost,
+		Handler: server.NewGetFeed(),
+	},
 }

@@ -12,11 +12,11 @@ type App struct {
 }
 
 type CreatePostRequest struct {
-	post model.Post
+	Post model.Post `json:"post"`
 }
 
 type GetFeedRequest struct {
-	id string
+	Id string `json:"id"`
 }
 
 func (a *App) NewCreatePost() echo.HandlerFunc {
@@ -29,7 +29,7 @@ func (a *App) NewCreatePost() echo.HandlerFunc {
 			return err
 		}
 
-		err = a.cache.WriteToSubs(c.Request().Context(), resp.post, subs)
+		err = a.cache.WriteToSubs(c.Request().Context(), resp.Post, subs)
 		if err != nil {
 			c.Error(err)
 			return err
@@ -51,7 +51,7 @@ func (a *App) NewGetFeed() echo.HandlerFunc {
 			return err
 		}
 
-		feed, err := a.cache.ReadFeed(c.Request().Context(), resp.id)
+		feed, err := a.cache.ReadFeed(c.Request().Context(), resp.Id)
 		if err != nil {
 			c.Error(err)
 			return err
