@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  redis:
+    container_name: redis
+    image: redis:4.0-alpine
+    command:
+      - 'redis-server'
+      - '--loglevel ${REDIS_LOGLEVEL:-warning}'
+      - '--databases 2'
+    ports:
+      - "6379:6379"

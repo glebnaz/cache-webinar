@@ -10,8 +10,11 @@ var server app.App
 
 func main() {
 
-	simpleCache := cache.NewSimple()
-	server = app.NewApp(simpleCache)
+	cache, err := cache.NewRedisCache("localhost:6379")
+	if err != nil {
+		panic(err)
+	}
+	server = app.NewApp(cache)
 
 	ech := router.InitRouters(Router)
 
